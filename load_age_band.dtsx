@@ -1,0 +1,395 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/11/2025 3:34:00 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-R6H90VD"
+  DTS:CreatorName="DESKTOP-R6H90VD\LENOVO"
+  DTS:DTSID="{02B9E233-88B6-44E2-A0E9-A74BE78613CE}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="8192"
+  DTS:ObjectName="load_age_band"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{75CAAE2C-B276-4739-AACC-274FFC647414}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+      DTS:CreationName="ADO.NET:Microsoft.Data.SqlClient.SqlConnection, Microsoft.Data.SqlClient, Version=5.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5"
+      DTS:DTSID="{7E90DA64-5726-457B-9CB7-737627C9C6FD}"
+      DTS:ObjectName="localhost.insurrance_DataWarehouse">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=insurrance_DataWarehouse;Integrated Security=True;Trust Server Certificate=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\load age band"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{24429384-BD17-4C90-A9A3-2CA5C5D67E13}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load age band"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\load age band\Destination ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Charge des données dans une base de données compatible ADO.NET qui utilise une vue ou une table de base de données. Chargez les données dans une table nouvelle ou existante. Par exemple, utilisez un fournisseur ADO.NET pour ODBC pour charger des données dans une destination ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;2"
+              description="Charge des données dans une base de données compatible ADO.NET qui utilise une vue ou une table de base de données. Chargez les données dans une table nouvelle ou existante. Par exemple, utilisez un fournisseur ADO.NET pour ODBC pour charger des données dans une destination ODBC."
+              name="Destination ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nom de la table de base de données de destination."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"gold"."AgeBand"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifiez le nombre de lignes par lot. La taille par défaut, 0, utilise la même taille que la mémoire tampon interne SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant qu'une commande n'expire. Une valeur égale à 0 indique un délai infini. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Spécifie si l'interface SqlBulkCopy doit être utilisée pour améliorer les performances des opérations d'insertion en bloc. Cette interface n'est prise en charge que par certains fournisseurs."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\load age band\Destination ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+                  description="Gestionnaire de connexions managées"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\load age band\Destination ADO NET.Inputs[Entrée de destination ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\load age band\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[AgeBandCode]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="AgeBandCode"
+                      externalMetadataColumnId="Package\load age band\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[AgeBandCode]"
+                      lineageId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[AgeBandCode]" />
+                    <inputColumn
+                      refId="Package\load age band\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[MinAge]"
+                      cachedDataType="i4"
+                      cachedName="MinAge"
+                      externalMetadataColumnId="Package\load age band\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[MinAge]"
+                      lineageId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[MinAge]" />
+                    <inputColumn
+                      refId="Package\load age band\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[MaxAge]"
+                      cachedDataType="i4"
+                      cachedName="MaxAge"
+                      externalMetadataColumnId="Package\load age band\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[MaxAge]"
+                      lineageId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[MaxAge]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\load age band\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[AgeBandKey]"
+                      dataType="i4"
+                      name="AgeBandKey" />
+                    <externalMetadataColumn
+                      refId="Package\load age band\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[AgeBandCode]"
+                      dataType="wstr"
+                      length="20"
+                      name="AgeBandCode" />
+                    <externalMetadataColumn
+                      refId="Package\load age band\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[MinAge]"
+                      dataType="i4"
+                      name="MinAge" />
+                    <externalMetadataColumn
+                      refId="Package\load age band\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[MaxAge]"
+                      dataType="i4"
+                      name="MaxAge" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\load age band\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination ADO NET"
+                  synchronousInputId="Package\load age band\Destination ADO NET.Inputs[Entrée de destination ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load age band\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load age band\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load age band\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load age band\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\load age band\Source ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Utilise des données issues de SQL Server, OLE DB, ODBC ou Oracle, à l'aide du fournisseur de données .NET Framework correspondant. Utilisez une instruction Transact-SQL pour définir le jeu de résultats. Par exemple, extrayez des données depuis SQL Server à partir du fournisseur de données .NET Framework pour SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Utilise des données issues de SQL Server, OLE DB, ODBC ou Oracle, à l'aide du fournisseur de données .NET Framework correspondant. Utilisez une instruction Transact-SQL pour définir le jeu de résultats. Par exemple, extrayez des données depuis SQL Server à partir du fournisseur de données .NET Framework pour SQL Server."
+              name="Source ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL utilisée par le composant pour extraire des données."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">300</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes externes qui ne sont pas des chaînes peuvent ou non être converties implicitement en chaînes dans les colonnes de sortie."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nom de la table de base de données source."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"silver"."AgeBand"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifier le mode de récupération des informations de colonne externe"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\load age band\Source ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+                  description="Gestionnaire de connexions managées"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET]"
+                  name="Sortie de source ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[AgeBandCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[AgeBandCode]"
+                      length="20"
+                      lineageId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[AgeBandCode]"
+                      name="AgeBandCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[MinAge]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[MinAge]"
+                      lineageId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[MinAge]"
+                      name="MinAge"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[MaxAge]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[MaxAge]"
+                      lineageId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[MaxAge]"
+                      name="MaxAge"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[AgeBandCode]"
+                      dataType="wstr"
+                      length="20"
+                      name="AgeBandCode" />
+                    <externalMetadataColumn
+                      refId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[MinAge]"
+                      dataType="i4"
+                      name="MinAge" />
+                    <externalMetadataColumn
+                      refId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[MaxAge]"
+                      dataType="i4"
+                      name="MaxAge" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\load age band\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load age band\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[AgeBandCode]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\load age band\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[AgeBandCode]"
+                      name="AgeBandCode" />
+                    <outputColumn
+                      refId="Package\load age band\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[MinAge]"
+                      dataType="i4"
+                      lineageId="Package\load age band\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[MinAge]"
+                      name="MinAge" />
+                    <outputColumn
+                      refId="Package\load age band\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[MaxAge]"
+                      dataType="i4"
+                      lineageId="Package\load age band\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[MaxAge]"
+                      name="MaxAge" />
+                    <outputColumn
+                      refId="Package\load age band\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load age band\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load age band\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load age band\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\load age band.Paths[Sortie de source ADO NET]"
+              endId="Package\load age band\Destination ADO NET.Inputs[Entrée de destination ADO NET]"
+              name="Sortie de source ADO NET"
+              startId="Package\load age band\Source ADO NET.Outputs[Sortie de source ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="149,42"
+          Id="Package\load age band"
+          TopLeft="386,97" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\load age band">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="166,42"
+          Id="Package\load age band\Source ADO NET"
+          TopLeft="404,20" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\load age band\Destination ADO NET"
+          TopLeft="346,121" />
+        <EdgeLayout
+          Id="Package\load age band.Paths[Sortie de source ADO NET]"
+          TopLeft="487,62">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-48,59"
+              Start="0,0"
+              End="-48,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.5"
+                    Point2="0,29.5"
+                    Point3="-4,29.5" />
+                  <mssgle:LineSegment
+                    End="-44,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-44,29.5"
+                    Point2="-48,29.5"
+                    Point3="-48,33.5" />
+                  <mssgle:LineSegment
+                    End="-48,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\load age band\Source ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\load age band\Destination ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

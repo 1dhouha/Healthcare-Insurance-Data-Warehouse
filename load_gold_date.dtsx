@@ -1,0 +1,424 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/11/2025 3:31:11 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-R6H90VD"
+  DTS:CreatorName="DESKTOP-R6H90VD\LENOVO"
+  DTS:DTSID="{9C09BB04-5A92-4BDB-AC6A-5EB0E4276855}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="8192"
+  DTS:ObjectName="load_gold_date"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{7DB7BAE8-FE24-4813-8DE0-A1DC44431EA8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+      DTS:CreationName="ADO.NET:Microsoft.Data.SqlClient.SqlConnection, Microsoft.Data.SqlClient, Version=5.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5"
+      DTS:DTSID="{41961174-18F7-49C8-BAE2-170FCB6E9DA7}"
+      DTS:ObjectName="localhost.insurrance_DataWarehouse">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=insurrance_DataWarehouse;Integrated Security=True;Trust Server Certificate=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\load gold date"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{887DB7A2-5616-43B6-A9B7-5E572F4AAD0C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load gold date"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\load gold date\Destination ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Charge des données dans une base de données compatible ADO.NET qui utilise une vue ou une table de base de données. Chargez les données dans une table nouvelle ou existante. Par exemple, utilisez un fournisseur ADO.NET pour ODBC pour charger des données dans une destination ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;2"
+              description="Charge des données dans une base de données compatible ADO.NET qui utilise une vue ou une table de base de données. Chargez les données dans une table nouvelle ou existante. Par exemple, utilisez un fournisseur ADO.NET pour ODBC pour charger des données dans une destination ODBC."
+              name="Destination ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nom de la table de base de données de destination."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"gold"."date_insured"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifiez le nombre de lignes par lot. La taille par défaut, 0, utilise la même taille que la mémoire tampon interne SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant qu'une commande n'expire. Une valeur égale à 0 indique un délai infini. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Spécifie si l'interface SqlBulkCopy doit être utilisée pour améliorer les performances des opérations d'insertion en bloc. Cette interface n'est prise en charge que par certains fournisseurs."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\load gold date\Destination ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+                  description="Gestionnaire de connexions managées"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\load gold date\Destination ADO NET.Inputs[Entrée de destination ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\load gold date\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[IdInsuredCode]"
+                      cachedDataType="i4"
+                      cachedName="IdInsuredCode"
+                      externalMetadataColumnId="Package\load gold date\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[IdInsuredCode]"
+                      lineageId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdInsuredCode]" />
+                    <inputColumn
+                      refId="Package\load gold date\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[IdPolicyCode]"
+                      cachedDataType="i4"
+                      cachedName="IdPolicyCode"
+                      externalMetadataColumnId="Package\load gold date\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[IdPolicyCode]"
+                      lineageId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdPolicyCode]" />
+                    <inputColumn
+                      refId="Package\load gold date\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[date_effect]"
+                      cachedDataType="dbDate"
+                      cachedName="date_effect"
+                      externalMetadataColumnId="Package\load gold date\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[date_effect]"
+                      lineageId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[date_effect]" />
+                    <inputColumn
+                      refId="Package\load gold date\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[date_lapse]"
+                      cachedDataType="dbDate"
+                      cachedName="date_lapse"
+                      externalMetadataColumnId="Package\load gold date\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[date_lapse]"
+                      lineageId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[date_lapse]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\load gold date\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[IdDateKey]"
+                      dataType="i4"
+                      name="IdDateKey" />
+                    <externalMetadataColumn
+                      refId="Package\load gold date\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[IdInsuredCode]"
+                      dataType="i4"
+                      name="IdInsuredCode" />
+                    <externalMetadataColumn
+                      refId="Package\load gold date\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[IdPolicyCode]"
+                      dataType="i4"
+                      name="IdPolicyCode" />
+                    <externalMetadataColumn
+                      refId="Package\load gold date\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[date_effect]"
+                      dataType="dbTimeStamp"
+                      name="date_effect" />
+                    <externalMetadataColumn
+                      refId="Package\load gold date\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[date_lapse]"
+                      dataType="dbTimeStamp"
+                      name="date_lapse" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\load gold date\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination ADO NET"
+                  synchronousInputId="Package\load gold date\Destination ADO NET.Inputs[Entrée de destination ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load gold date\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load gold date\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load gold date\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load gold date\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\load gold date\Source ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Utilise des données issues de SQL Server, OLE DB, ODBC ou Oracle, à l'aide du fournisseur de données .NET Framework correspondant. Utilisez une instruction Transact-SQL pour définir le jeu de résultats. Par exemple, extrayez des données depuis SQL Server à partir du fournisseur de données .NET Framework pour SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Utilise des données issues de SQL Server, OLE DB, ODBC ou Oracle, à l'aide du fournisseur de données .NET Framework correspondant. Utilisez une instruction Transact-SQL pour définir le jeu de résultats. Par exemple, extrayez des données depuis SQL Server à partir du fournisseur de données .NET Framework pour SQL Server."
+              name="Source ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL utilisée par le composant pour extraire des données."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    IdInsuredCode,
+    IdPolicyCode,
+    date_effect,
+    date_lapse      -- les colonnes year_* sont ignorées
+    -- , IdDateKey   -- à prendre seulement si tu dois conserver la même clé technique
+FROM silver.date_insured;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">300</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes externes qui ne sont pas des chaînes peuvent ou non être converties implicitement en chaînes dans les colonnes de sortie."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nom de la table de base de données source."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifier le mode de récupération des informations de colonne externe"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\load gold date\Source ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+                  description="Gestionnaire de connexions managées"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET]"
+                  name="Sortie de source ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdInsuredCode]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[IdInsuredCode]"
+                      lineageId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdInsuredCode]"
+                      name="IdInsuredCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdPolicyCode]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[IdPolicyCode]"
+                      lineageId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdPolicyCode]"
+                      name="IdPolicyCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[date_effect]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[date_effect]"
+                      lineageId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[date_effect]"
+                      name="date_effect"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[date_lapse]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[date_lapse]"
+                      lineageId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[date_lapse]"
+                      name="date_lapse"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[IdInsuredCode]"
+                      dataType="i4"
+                      name="IdInsuredCode" />
+                    <externalMetadataColumn
+                      refId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[IdPolicyCode]"
+                      dataType="i4"
+                      name="IdPolicyCode" />
+                    <externalMetadataColumn
+                      refId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[date_effect]"
+                      dataType="dbDate"
+                      name="date_effect" />
+                    <externalMetadataColumn
+                      refId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[date_lapse]"
+                      dataType="dbDate"
+                      name="date_lapse" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\load gold date\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load gold date\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[IdInsuredCode]"
+                      dataType="i4"
+                      lineageId="Package\load gold date\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[IdInsuredCode]"
+                      name="IdInsuredCode" />
+                    <outputColumn
+                      refId="Package\load gold date\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[IdPolicyCode]"
+                      dataType="i4"
+                      lineageId="Package\load gold date\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[IdPolicyCode]"
+                      name="IdPolicyCode" />
+                    <outputColumn
+                      refId="Package\load gold date\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[date_effect]"
+                      dataType="dbDate"
+                      lineageId="Package\load gold date\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[date_effect]"
+                      name="date_effect" />
+                    <outputColumn
+                      refId="Package\load gold date\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[date_lapse]"
+                      dataType="dbDate"
+                      lineageId="Package\load gold date\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[date_lapse]"
+                      name="date_lapse" />
+                    <outputColumn
+                      refId="Package\load gold date\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load gold date\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load gold date\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load gold date\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\load gold date.Paths[Sortie de source ADO NET]"
+              endId="Package\load gold date\Destination ADO NET.Inputs[Entrée de destination ADO NET]"
+              name="Sortie de source ADO NET"
+              startId="Package\load gold date\Source ADO NET.Outputs[Sortie de source ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="148,42"
+          Id="Package\load gold date"
+          TopLeft="322,82" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\load gold date">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="166,42"
+          Id="Package\load gold date\Source ADO NET"
+          TopLeft="446,58" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\load gold date\Destination ADO NET"
+          TopLeft="380,167" />
+        <EdgeLayout
+          Id="Package\load gold date.Paths[Sortie de source ADO NET]"
+          TopLeft="529,100">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-56,67"
+              Start="0,0"
+              End="-56,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.5"
+                    Point2="0,33.5"
+                    Point3="-4,33.5" />
+                  <mssgle:LineSegment
+                    End="-52,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-52,33.5"
+                    Point2="-56,33.5"
+                    Point3="-56,37.5" />
+                  <mssgle:LineSegment
+                    End="-56,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\load gold date\Source ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\load gold date\Destination ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

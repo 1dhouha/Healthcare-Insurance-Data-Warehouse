@@ -1,0 +1,657 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/11/2025 2:56:20 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-R6H90VD"
+  DTS:CreatorName="DESKTOP-R6H90VD\LENOVO"
+  DTS:DTSID="{C44D9994-469B-4D5B-94D9-14A8348B62F1}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="8192"
+  DTS:ObjectName="load_financial_claims"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{D01A2CBC-F4C6-462B-AD3C-99BAA28E98C6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+      DTS:CreationName="ADO.NET:Microsoft.Data.SqlClient.SqlConnection, Microsoft.Data.SqlClient, Version=5.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5"
+      DTS:DTSID="{4DB07E42-8A34-4105-94AF-CEF99E9022B4}"
+      DTS:ObjectName="localhost.insurrance_DataWarehouse">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=insurrance_DataWarehouse;Integrated Security=True;Trust Server Certificate=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\load financial_claims"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{3822F519-2A30-4354-A109-C7815F1063ED}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load financial_claims"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\load financial_claims\Destination ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Charge des données dans une base de données compatible ADO.NET qui utilise une vue ou une table de base de données. Chargez les données dans une table nouvelle ou existante. Par exemple, utilisez un fournisseur ADO.NET pour ODBC pour charger des données dans une destination ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;2"
+              description="Charge des données dans une base de données compatible ADO.NET qui utilise une vue ou une table de base de données. Chargez les données dans une table nouvelle ou existante. Par exemple, utilisez un fournisseur ADO.NET pour ODBC pour charger des données dans une destination ODBC."
+              name="Destination ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nom de la table de base de données de destination."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"silver"."financial_claim"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifiez le nombre de lignes par lot. La taille par défaut, 0, utilise la même taille que la mémoire tampon interne SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant qu'une commande n'expire. Une valeur égale à 0 indique un délai infini. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Spécifie si l'interface SqlBulkCopy doit être utilisée pour améliorer les performances des opérations d'insertion en bloc. Cette interface n'est prise en charge que par certains fournisseurs."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\load financial_claims\Destination ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+                  description="Gestionnaire de connexions managées"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[IdPolicyCode]"
+                      cachedDataType="i4"
+                      cachedName="IdPolicyCode"
+                      externalMetadataColumnId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[IdPolicyCode]"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdPolicyCode]" />
+                    <inputColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[IdInsuredCode]"
+                      cachedDataType="i4"
+                      cachedName="IdInsuredCode"
+                      externalMetadataColumnId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[IdInsuredCode]"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdInsuredCode]" />
+                    <inputColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[cost_claim_year]"
+                      cachedDataType="numeric"
+                      cachedName="cost_claim_year"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[cost_claim_year]"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[cost_claim_year]" />
+                    <inputColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[nbr_medical_service]"
+                      cachedDataType="i4"
+                      cachedName="nbr_medical_service"
+                      externalMetadataColumnId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[nbr_medical_service]"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[nbr_medical_service]" />
+                    <inputColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[claims_ratio]"
+                      cachedDataType="numeric"
+                      cachedName="claims_ratio"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[claims_ratio]"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[claims_ratio]" />
+                    <inputColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[risk_score]"
+                      cachedDataType="numeric"
+                      cachedName="risk_score"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[risk_score]"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[risk_score]" />
+                    <inputColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[loyality_score]"
+                      cachedDataType="numeric"
+                      cachedName="loyality_score"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[loyality_score]"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[loyality_score]" />
+                    <inputColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[premium]"
+                      cachedDataType="numeric"
+                      cachedName="premium"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[premuim]"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[premium]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[IdFinancialClaimKey]"
+                      dataType="i4"
+                      name="IdFinancialClaimKey" />
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[IdPolicyCode]"
+                      dataType="i4"
+                      name="IdPolicyCode" />
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[IdInsuredCode]"
+                      dataType="i4"
+                      name="IdInsuredCode" />
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[premuim]"
+                      dataType="numeric"
+                      name="premuim"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[cost_claim_year]"
+                      dataType="numeric"
+                      name="cost_claim_year"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[nbr_medical_service]"
+                      dataType="i4"
+                      name="nbr_medical_service" />
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[claims_ratio]"
+                      dataType="numeric"
+                      name="claims_ratio"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[risk_score]"
+                      dataType="numeric"
+                      name="risk_score"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[loyality_score]"
+                      dataType="numeric"
+                      name="loyality_score"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\load financial_claims\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination ADO NET"
+                  synchronousInputId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load financial_claims\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load financial_claims\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\load financial_claims\Source ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Utilise des données issues de SQL Server, OLE DB, ODBC ou Oracle, à l'aide du fournisseur de données .NET Framework correspondant. Utilisez une instruction Transact-SQL pour définir le jeu de résultats. Par exemple, extrayez des données depuis SQL Server à partir du fournisseur de données .NET Framework pour SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Utilise des données issues de SQL Server, OLE DB, ODBC ou Oracle, à l'aide du fournisseur de données .NET Framework correspondant. Utilisez une instruction Transact-SQL pour définir le jeu de résultats. Par exemple, extrayez des données depuis SQL Server à partir du fournisseur de données .NET Framework pour SQL Server."
+              name="Source ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL utilisée par le composant pour extraire des données."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">WITH bfc_bridge AS (   -- 1) Mapper l'ID du claim vers les codes via la table de pont
+    SELECT
+        ic.IdPolicy       AS IdPolicyCode,
+        ic.IdInsured      AS IdInsuredCode,
+        CAST(bfc.premium            AS decimal(10,2)) AS premium,
+        CAST(bfc.cost_claims_year   AS decimal(10,2)) AS cost_claim_year,   -- si ta table bronze a "cost_claims_year"
+        CAST(bfc.n_medical_services AS int)           AS nbr_medical_service, -- idem "n_medical_services"
+        ROW_NUMBER() OVER (
+            PARTITION BY ic.IdPolicy, ic.IdInsured
+            ORDER BY bfc.id DESC
+        ) AS rn
+    FROM silver.id_component AS ic
+    LEFT JOIN bronze.financial_claim AS bfc
+      ON bfc.ID = ic.IdCode         -- &lt;-- le champ ID "int_int" de bronze
+),
+src AS (            -- 2) Joindre aux dimensions "insured/policy/date_insured"
+    SELECT
+        si.IdPolicyCode,
+        si.IdInsuredCode,
+        bb.premium,
+        bb.cost_claim_year,
+        bb.nbr_medical_service,
+        CAST(si.age            AS int)           AS age,
+        CAST(si.reimbursement  AS decimal(10,2)) AS reimbursement,
+        CAST(p.seniority_policy AS decimal(10,2)) AS seniority_policy,
+        CAST(di.tenure_years    AS decimal(10,2)) AS tenure_years
+    FROM silver.insured AS si
+    LEFT JOIN bfc_bridge AS bb
+      ON bb.IdPolicyCode  = si.IdPolicyCode
+     AND bb.IdInsuredCode = si.IdInsuredCode
+     AND bb.rn = 1                -- garder 1 ligne par (Policy,Insured)
+    LEFT JOIN silver.policy AS p
+      ON p.IdPolicyCode = si.IdPolicyCode
+    LEFT JOIN silver.date_insured AS di
+      ON di.IdPolicyCode  = si.IdPolicyCode
+     AND di.IdInsuredCode = si.IdInsuredCode
+),
+calc AS (          -- 3) Calculs
+    SELECT
+        s.IdPolicyCode,
+        s.IdInsuredCode,
+        s.premium,
+        s.cost_claim_year,
+        s.nbr_medical_service,
+        CAST(
+            CASE WHEN s.premium IS NULL OR s.premium = 0
+                 THEN 0 ELSE (s.cost_claim_year / s.premium) * 100
+            END AS decimal(10,2)
+        ) AS claims_ratio,
+        CAST(
+            0.5 * (CASE WHEN s.premium IS NULL OR s.premium = 0
+                        THEN 0 ELSE (s.cost_claim_year / s.premium) * 100 END)
+          + 0.3 * (ISNULL(s.age,0) / 100.0)
+          + 0.2 * (ISNULL(s.nbr_medical_service,0) / 30.0)
+          AS decimal(10,2)
+        ) AS risk_score,
+        CAST(
+            0.7 * ISNULL(s.seniority_policy,0)
+          + 0.3 * ISNULL(s.tenure_years,0)
+          + 1.0 - ISNULL(s.reimbursement,0)
+          AS decimal(10,2)
+        ) AS loyality_score      -- orthographe identique à ta colonne cible
+    FROM src AS s
+)
+SELECT                 -- 4) N’envoyer que les nouvelles paires vers la destination
+    c.IdPolicyCode,
+    c.IdInsuredCode,
+    c.premium,
+    c.cost_claim_year,
+    c.nbr_medical_service,
+    c.claims_ratio,
+    c.risk_score,
+    c.loyality_score
+FROM calc AS c
+LEFT JOIN silver.financial_claim AS tgt
+  ON tgt.IdPolicyCode  = c.IdPolicyCode
+ AND tgt.IdInsuredCode = c.IdInsuredCode
+WHERE tgt.IdPolicyCode IS NULL;</property>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">300</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes externes qui ne sont pas des chaînes peuvent ou non être converties implicitement en chaînes dans les colonnes de sortie."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nom de la table de base de données source."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifier le mode de récupération des informations de colonne externe"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\load financial_claims\Source ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+                  description="Gestionnaire de connexions managées"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET]"
+                  name="Sortie de source ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdPolicyCode]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[IdPolicyCode]"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdPolicyCode]"
+                      name="IdPolicyCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdInsuredCode]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[IdInsuredCode]"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdInsuredCode]"
+                      name="IdInsuredCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[premium]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[premium]"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[premium]"
+                      name="premium"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[cost_claim_year]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[cost_claim_year]"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[cost_claim_year]"
+                      name="cost_claim_year"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[nbr_medical_service]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[nbr_medical_service]"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[nbr_medical_service]"
+                      name="nbr_medical_service"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[claims_ratio]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[claims_ratio]"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[claims_ratio]"
+                      name="claims_ratio"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[risk_score]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[risk_score]"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[risk_score]"
+                      name="risk_score"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[loyality_score]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[loyality_score]"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[loyality_score]"
+                      name="loyality_score"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[IdPolicyCode]"
+                      dataType="i4"
+                      name="IdPolicyCode" />
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[IdInsuredCode]"
+                      dataType="i4"
+                      name="IdInsuredCode" />
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[premium]"
+                      dataType="numeric"
+                      name="premium"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[cost_claim_year]"
+                      dataType="numeric"
+                      name="cost_claim_year"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[nbr_medical_service]"
+                      dataType="i4"
+                      name="nbr_medical_service" />
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[claims_ratio]"
+                      dataType="numeric"
+                      name="claims_ratio"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[risk_score]"
+                      dataType="numeric"
+                      name="risk_score"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[loyality_score]"
+                      dataType="numeric"
+                      name="loyality_score"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[IdPolicyCode]"
+                      dataType="i4"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[IdPolicyCode]"
+                      name="IdPolicyCode" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[IdInsuredCode]"
+                      dataType="i4"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[IdInsuredCode]"
+                      name="IdInsuredCode" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[premium]"
+                      dataType="numeric"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[premium]"
+                      name="premium"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[cost_claim_year]"
+                      dataType="numeric"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[cost_claim_year]"
+                      name="cost_claim_year"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[nbr_medical_service]"
+                      dataType="i4"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[nbr_medical_service]"
+                      name="nbr_medical_service" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[claims_ratio]"
+                      dataType="numeric"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[claims_ratio]"
+                      name="claims_ratio"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[risk_score]"
+                      dataType="numeric"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[risk_score]"
+                      name="risk_score"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[loyality_score]"
+                      dataType="numeric"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[loyality_score]"
+                      name="loyality_score"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load financial_claims\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\load financial_claims.Paths[Sortie de source ADO NET]"
+              endId="Package\load financial_claims\Destination ADO NET.Inputs[Entrée de destination ADO NET]"
+              name="Sortie de source ADO NET"
+              startId="Package\load financial_claims\Source ADO NET.Outputs[Sortie de source ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="181,42"
+          Id="Package\load financial_claims"
+          TopLeft="399,99" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\load financial_claims">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="166,42"
+          Id="Package\load financial_claims\Source ADO NET"
+          TopLeft="314,30" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\load financial_claims\Destination ADO NET"
+          TopLeft="366,136" />
+        <EdgeLayout
+          Id="Package\load financial_claims.Paths[Sortie de source ADO NET]"
+          TopLeft="397,72">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="62,64"
+              Start="0,0"
+              End="62,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28"
+                    Point2="0,32"
+                    Point3="4,32" />
+                  <mssgle:LineSegment
+                    End="58,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="58,32"
+                    Point2="62,32"
+                    Point3="62,36" />
+                  <mssgle:LineSegment
+                    End="62,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\load financial_claims\Source ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\load financial_claims\Destination ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

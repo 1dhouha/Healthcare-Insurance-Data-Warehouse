@@ -1,0 +1,457 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/11/2025 2:56:13 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-R6H90VD"
+  DTS:CreatorName="DESKTOP-R6H90VD\LENOVO"
+  DTS:DTSID="{0F0FC7C3-5C21-482E-9B92-3D3652BC7425}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="8192"
+  DTS:ObjectName="load_insured"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{2FF1933B-B6FE-4591-992F-13EE8200247A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+      DTS:CreationName="ADO.NET:Microsoft.Data.SqlClient.SqlConnection, Microsoft.Data.SqlClient, Version=5.0.0.0, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5"
+      DTS:DTSID="{703BF5B2-2810-435A-BBC5-A847F15E5DCE}"
+      DTS:ObjectName="localhost.insurrance_DataWarehouse">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=insurrance_DataWarehouse;Integrated Security=True;Trust Server Certificate=True;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\load insured"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{D4E490EE-9C74-4F4D-98D1-14EF4CBE940B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="load insured"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\load insured\Destination ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Charge des données dans une base de données compatible ADO.NET qui utilise une vue ou une table de base de données. Chargez les données dans une table nouvelle ou existante. Par exemple, utilisez un fournisseur ADO.NET pour ODBC pour charger des données dans une destination ODBC.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;2"
+              description="Charge des données dans une base de données compatible ADO.NET qui utilise une vue ou une table de base de données. Chargez les données dans une table nouvelle ou existante. Par exemple, utilisez un fournisseur ADO.NET pour ODBC pour charger des données dans une destination ODBC."
+              name="Destination ADO NET"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Nom de la table de base de données de destination."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"silver"."insured"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifiez le nombre de lignes par lot. La taille par défaut, 0, utilise la même taille que la mémoire tampon interne SSIS. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant qu'une commande n'expire. Une valeur égale à 0 indique un délai infini. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Spécifie si l'interface SqlBulkCopy doit être utilisée pour améliorer les performances des opérations d'insertion en bloc. Cette interface n'est prise en charge que par certains fournisseurs."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\load insured\Destination ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+                  description="Gestionnaire de connexions managées"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination ADO NET">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[IdPolicyCode]"
+                      cachedDataType="i4"
+                      cachedName="IdPolicyCode"
+                      externalMetadataColumnId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[IdPolicyCode]"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdPolicyCode]" />
+                    <inputColumn
+                      refId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[IdInsuredCode]"
+                      cachedDataType="i4"
+                      cachedName="IdInsuredCode"
+                      externalMetadataColumnId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[IdInsuredCode]"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdInsuredCode]" />
+                    <inputColumn
+                      refId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[gender]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="gender"
+                      externalMetadataColumnId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[gender]"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[gender]" />
+                    <inputColumn
+                      refId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[age]"
+                      cachedDataType="i4"
+                      cachedName="age"
+                      externalMetadataColumnId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[age]"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[age]" />
+                    <inputColumn
+                      refId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET].Columns[reimbursement]"
+                      cachedDataType="i4"
+                      cachedName="reimbursement"
+                      externalMetadataColumnId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[reimbursement]"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[reimbursement]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[IdInsuredKey]"
+                      dataType="i4"
+                      name="IdInsuredKey" />
+                    <externalMetadataColumn
+                      refId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[IdPolicyCode]"
+                      dataType="i4"
+                      name="IdPolicyCode" />
+                    <externalMetadataColumn
+                      refId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[IdInsuredCode]"
+                      dataType="i4"
+                      name="IdInsuredCode" />
+                    <externalMetadataColumn
+                      refId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[gender]"
+                      dataType="wstr"
+                      length="1"
+                      name="gender" />
+                    <externalMetadataColumn
+                      refId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[age]"
+                      dataType="i4"
+                      name="age" />
+                    <externalMetadataColumn
+                      refId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET].ExternalColumns[reimbursement]"
+                      dataType="i4"
+                      name="reimbursement" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\load insured\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination ADO NET"
+                  synchronousInputId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load insured\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load insured\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load insured\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load insured\Destination ADO NET.Outputs[Sortie d'erreur de destination ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\load insured\Source ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Utilise des données issues de SQL Server, OLE DB, ODBC ou Oracle, à l'aide du fournisseur de données .NET Framework correspondant. Utilisez une instruction Transact-SQL pour définir le jeu de résultats. Par exemple, extrayez des données depuis SQL Server à partir du fournisseur de données .NET Framework pour SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Utilise des données issues de SQL Server, OLE DB, ODBC ou Oracle, à l'aide du fournisseur de données .NET Framework correspondant. Utilisez une instruction Transact-SQL pour définir le jeu de résultats. Par exemple, extrayez des données depuis SQL Server à partir du fournisseur de données .NET Framework pour SQL Server."
+              name="Source ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL utilisée par le composant pour extraire des données."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT
+    ic.IdPolicy        AS IdPolicyCode,
+    ic.IdInsured       AS IdInsuredCode,
+    bi.gender,
+    bi.age,
+    CASE
+        WHEN bi.reimbursement IS NULL THEN NULL
+        WHEN LTRIM(RTRIM(LOWER(bi.reimbursement))) IN ('yes','y','1','oui','o') THEN 1
+        WHEN LTRIM(RTRIM(LOWER(bi.reimbursement))) IN ('no','n','0','non')        THEN 0
+        ELSE 0
+    END AS reimbursement
+FROM silver.id_component AS ic
+JOIN bronze.insured     AS bi ON bi.ID = ic.IdCode
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM silver.insured AS si
+    WHERE si.IdPolicyCode  = ic.IdPolicy
+      AND si.IdInsuredCode = ic.IdInsured
+);</property>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">300</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes externes qui ne sont pas des chaînes peuvent ou non être converties implicitement en chaînes dans les colonnes de sortie."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nom de la table de base de données source."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifier le mode de récupération des informations de colonne externe"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\load insured\Source ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.insurrance_DataWarehouse]"
+                  description="Gestionnaire de connexions managées"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET]"
+                  name="Sortie de source ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdPolicyCode]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[IdPolicyCode]"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdPolicyCode]"
+                      name="IdPolicyCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdInsuredCode]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[IdInsuredCode]"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[IdInsuredCode]"
+                      name="IdInsuredCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[gender]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[gender]"
+                      length="1"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[gender]"
+                      name="gender"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[age]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[age]"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[age]"
+                      name="age"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[reimbursement]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[reimbursement]"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].Columns[reimbursement]"
+                      name="reimbursement"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[IdPolicyCode]"
+                      dataType="i4"
+                      name="IdPolicyCode" />
+                    <externalMetadataColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[IdInsuredCode]"
+                      dataType="i4"
+                      name="IdInsuredCode" />
+                    <externalMetadataColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[gender]"
+                      dataType="wstr"
+                      length="1"
+                      name="gender" />
+                    <externalMetadataColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[age]"
+                      dataType="i4"
+                      name="age" />
+                    <externalMetadataColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET].ExternalColumns[reimbursement]"
+                      dataType="i4"
+                      name="reimbursement" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\load insured\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[IdPolicyCode]"
+                      dataType="i4"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[IdPolicyCode]"
+                      name="IdPolicyCode" />
+                    <outputColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[IdInsuredCode]"
+                      dataType="i4"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[IdInsuredCode]"
+                      name="IdInsuredCode" />
+                    <outputColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[gender]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[gender]"
+                      name="gender" />
+                    <outputColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[age]"
+                      dataType="i4"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[age]"
+                      name="age" />
+                    <outputColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[reimbursement]"
+                      dataType="i4"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[reimbursement]"
+                      name="reimbursement" />
+                    <outputColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\load insured\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\load insured\Source ADO NET.Outputs[Sortie d'erreur de source ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\load insured.Paths[Sortie de source ADO NET]"
+              endId="Package\load insured\Destination ADO NET.Inputs[Entrée de destination ADO NET]"
+              name="Sortie de source ADO NET"
+              startId="Package\load insured\Source ADO NET.Outputs[Sortie de source ADO NET]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="139,42"
+          Id="Package\load insured"
+          TopLeft="399,93" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\load insured">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="166,42"
+          Id="Package\load insured\Source ADO NET"
+          TopLeft="261,119" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\load insured\Destination ADO NET"
+          TopLeft="257,213" />
+        <EdgeLayout
+          Id="Package\load insured.Paths[Sortie de source ADO NET]"
+          TopLeft="347,161">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\load insured\Source ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\load insured\Destination ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
